@@ -54,17 +54,17 @@ public:
     // Pulls the chips latch low
     digitalWrite(m_latch, LOW);
 
-    // Will repeat 8 times (once for each bit)
+    // Will repeat once for each pin
     for(DataType i = 0; i < PinCount; i++) {
-      // We use a "bitmask" to select only the eighth
+      // We use a "bitmask" to select only the highest
       // bit in our number (the one we are addressing this time through
-      DataType bit = state & B10000000;
+      DataType bit = state & (1 << (PinCount - 1));
 
-      // Shift the state by one so that the next value is in the 8th bit
+      // Shift the state by one so that the next value is in the highest bit
       // position.
       state = state << 1;
 
-      // If the 8th bit is set then set our data pin to HIGH otherwise set
+      // If the highest bit is set then set our data pin to HIGH otherwise set
       // it LOW.
       digitalWrite(m_data, bit ? HIGH : LOW);
 
@@ -83,7 +83,8 @@ public:
   void writeStateShort() {
     //Pulls the chips latch low
     digitalWrite(m_latch, LOW);
-    //Shifts out the 8 bits to the shift register
+    //Shifts out the 8 bits to the shift register, shiftOut() will only shift of a
+    //byte of data
     shiftOut(m_data, m_clock, MSBFIRST, m_state);
     //Pulls the latch high displaying the data
     digitalWrite(m_latch, HIGH);
