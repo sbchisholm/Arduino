@@ -7,7 +7,7 @@
 
 #include <Arduino.h>
 
-// DataType must be able to hold a maximum value of 2^N-1
+// DataType must be able to hold a maximum value of 2^PinCount-1
 template<int PinCount, typename DataType>
 class ShiftRegister
 {
