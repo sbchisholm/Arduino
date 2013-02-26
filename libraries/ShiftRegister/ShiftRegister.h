@@ -1,6 +1,9 @@
 
-// ShiftRegister is a class to provide an easy interface for controlling shift
-// registers. 
+// == ShiftRegister == is a class to provide an easy interface for controlling 
+// shift registers. This class is templated on PinCount and DataType where pin 
+// count is the number of pins we are able to control by the shift register and 
+// data count is a data type able to hold at least as many unsigned bits as there 
+// are pins.
 
 #ifndef ShiftRegister_h_included_
 #define ShiftRegister_h_included_
