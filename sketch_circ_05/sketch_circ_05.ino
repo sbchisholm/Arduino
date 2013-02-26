@@ -40,29 +40,13 @@ void setup()
  */
 void loop()
 {
-  ShiftRegister<pinCount> shiftRegister(data, clock, latch);
+  ShiftRegister<pinCount, byte> shiftRegister(data, clock, latch);
 
   // off on off on off on off on
-  shiftRegister.setState(B01010101);
-  shiftRegister.writeState();
-  delay(1000);
-
-  shiftRegister.setPin(7, LOW);
-  shiftRegister.setPin(6, HIGH);
-  shiftRegister.setPin(5, LOW);
-  shiftRegister.setPin(4, HIGH);
-  shiftRegister.setPin(3, LOW);
-  shiftRegister.setPin(2, HIGH);
-  shiftRegister.setPin(1, LOW);
-  shiftRegister.setPin(0, HIGH);
-  shiftRegister.writeState();
+  shiftRegister.setState(B01010101, true);
   delay(1000);
 
   // on off on off on off on off
-  shiftRegister.setState(B10101010);
-  shiftRegister.writeState();
-  delay(1000);
-
   shiftRegister.setPin(7, HIGH);
   shiftRegister.setPin(6, LOW);
   shiftRegister.setPin(5, HIGH);
