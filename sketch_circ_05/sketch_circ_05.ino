@@ -21,6 +21,7 @@
 short data = 2;
 short clock = 3;
 short latch = 4;
+const short pinCount = 8;
 
 /*
  * setup() - this function runs once when you turn your Arduino on
@@ -39,7 +40,7 @@ void setup()
  */
 void loop()
 {
-  ShiftRegister<8> shiftRegister(data, clock, latch);
+  ShiftRegister<pinCount> shiftRegister(data, clock, latch);
 
   // off on off on off on off on
   shiftRegister.setState(B01010101);
@@ -61,7 +62,7 @@ void loop()
   }
 
   // Count forwards from 0 to 255.
-  for (byte i = B11111111 ; i >= B00000000; i--) {
+  for (byte i = B11111111; i >= B00000000; i--) {
     shiftRegister.setState(i);
     shiftRegister.writeState();
     delay(delayTime);
