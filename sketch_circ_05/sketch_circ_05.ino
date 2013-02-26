@@ -47,8 +47,30 @@ void loop()
   shiftRegister.writeState();
   delay(1000);
 
+  shiftRegister.setPin(7, LOW);
+  shiftRegister.setPin(6, HIGH);
+  shiftRegister.setPin(5, LOW);
+  shiftRegister.setPin(4, HIGH);
+  shiftRegister.setPin(3, LOW);
+  shiftRegister.setPin(2, HIGH);
+  shiftRegister.setPin(1, LOW);
+  shiftRegister.setPin(0, HIGH);
+  shiftRegister.writeState();
+  delay(1000);
+
   // on off on off on off on off
   shiftRegister.setState(B10101010);
+  shiftRegister.writeState();
+  delay(1000);
+
+  shiftRegister.setPin(7, HIGH);
+  shiftRegister.setPin(6, LOW);
+  shiftRegister.setPin(5, HIGH);
+  shiftRegister.setPin(4, LOW);
+  shiftRegister.setPin(3, HIGH);
+  shiftRegister.setPin(2, LOW);
+  shiftRegister.setPin(1, HIGH);
+  shiftRegister.setPin(0, LOW);
   shiftRegister.writeState();
   delay(1000);
 

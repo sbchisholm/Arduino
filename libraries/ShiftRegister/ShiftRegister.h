@@ -33,7 +33,7 @@ public:
   // :: Interface -----------------------------------------------------------
 
   // valid pin values are 0,1,2,...,7.
-  void setPin(const short& pin, const short& pinState) {
+  void setPin(const short& pin, const short& pinState, const bool& write = false) {
     // Make sure that the input values are valid.
     // TODO: Add error handling.
     if (pin < 0 or pin > PinCount-1) return;
@@ -45,10 +45,16 @@ public:
     // If the bit is set to HIGH turn it on.
     if (pinState == HIGH)
       m_state == pinState | getBit(pin);
+
+    if (write) writeState();
   }
 
   // Override the current state with the given one.
-  void setState(const DataType &state) { m_state = state; }
+  void setState(const DataType &state, const bool& write = false) { 
+    m_state = state; 
+  
+    if (write) writeState();
+  }
 
   // Write the current state out to the shift register.
   void writeState() {
