@@ -36,8 +36,8 @@ public:
   void setPin(const short& pin, const short& pinState, const bool& write = false) {
     // Make sure that the input values are valid.
     // TODO: Add error handling.
-    //if (pin < 0 or pin > PinCount-1) return;
-    //if (pinState != LOW and not pinState != HIGH) return;
+    if (pin < 0 or pin > PinCount-1) return;
+    if (not pinState == LOW and not pinState != HIGH) return;
 
     // Set the pin we are addressing to LOW.
     m_state = m_state & prv_getMask(pin);
