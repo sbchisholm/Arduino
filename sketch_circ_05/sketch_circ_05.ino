@@ -46,6 +46,9 @@ void loop()
   shiftRegister.setState(B01010101, true);
   delay(1000);
 
+  shiftRegister.setState(B11111111, true);
+  delay(1000);
+
   // on off on off on off on off
   shiftRegister.setPin(7, HIGH);
   shiftRegister.setPin(6, LOW);
@@ -57,6 +60,9 @@ void loop()
   shiftRegister.setPin(0, LOW);
   shiftRegister.writeState();
   delay(1000);
+  
+  shiftRegister.setState(B10000001, true);
+  delay(5000);
 
   short delayTime = 100;
 

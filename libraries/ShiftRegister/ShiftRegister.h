@@ -36,15 +36,15 @@ public:
   void setPin(const short& pin, const short& pinState, const bool& write = false) {
     // Make sure that the input values are valid.
     // TODO: Add error handling.
-    if (pin < 0 or pin > PinCount-1) return;
-    if (not pinState == LOW or not pinState == HIGH) return;
+    //if (pin < 0 or pin > PinCount-1) return;
+    //if (pinState != LOW and not pinState != HIGH) return;
 
     // Set the pin we are addressing to LOW.
-    m_state = m_state & getMask(pin);
+    m_state = m_state & prv_getMask(pin);
 
     // If the bit is set to HIGH turn it on.
     if (pinState == HIGH)
-      m_state == pinState | getBit(pin);
+      m_state |= prv_getBit(pin);
 
     if (write) writeState();
   }
@@ -99,16 +99,16 @@ public:
     digitalWrite(m_latch, HIGH);
   }
 
-  DataType getBit(const DataType& pin) {
+  DataType prv_getBit(const DataType& pin) {
     DataType bit = 1;
     for (DataType i = 0; i < pin; i++) {
-      bit = bit << 1;
+      bit <<= 1;
     }
     return bit;
   }
 
-  DataType getMask(const DataType& pin) {
-    return getBit(pin) ^ m_MAX;
+  DataType prv_getMask(const DataType& pin) {
+    return prv_getBit(pin) ^ m_MAX;
   }
 
 private:
